@@ -5,9 +5,10 @@ jobs:
     machine:
       image: ubuntu-1604:201903-01
 
-
     steps:
       - checkout
       - run: pwd && ls -la
       - run: docker version
       - run: docker-compose version
+      - run: docker build -t test-image . --build-arg SECRET_VAR=${MY_VAR}
+      - run: docker run test-image
